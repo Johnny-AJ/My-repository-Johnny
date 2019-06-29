@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>小娜V3</title>
+</head>
+
+<body>
+
+</body>
+<script>
+
+
+    // var msg = prompt('你好，我是小娜助手;\n' +
+    //     '输入《编号》或者《关键词》选择功能，输入"q"确定小娜助手\n' +
+    //     '1.计算《总数》 \n' +
+    //     '2.获取《当前时间》\n' +
+    //     '3.讲《笑話》\n');
+    // if (msg === 'q') {
+    //     alert('主人，你不爱我了嘛');
+    // }
+
+
+
+    // while (true) {
+    //     var msg = prompt('你好，我是您的小娜助手;\n' +
+    //         '输入《编号》或者《关键词》选择功能，输入"q"确认退出小娜手嘛\n' +
+    //         '1.计算《总数》\n' +
+    //         '2.获取《当前时间》\n' +
+    //         '3.讲《笑话》\n');
+    //     if (msg === 'q') {
+    //         alert('主人，你确认不要小娜了嘛；');
+    //         break;
+    //     }
+
+    //     switch (msg) {
+    //         case '1':
+    //         case '总和':
+    //             var user = prompt('请输入你要求的数字，以逗号分开，例如：1,2,3,4');
+    //             var arr = user.split(',');
+    //             var sum = 0;
+    //             for (var i = 0; i < arr.length; i++) {
+    //                 sum += parseFloat(arr[i]);
+    //             }
+    //             alert('你要计算出来的总数是' + sum);
+    //             break;
+
+    //         case '2':
+    //         case '获取当前时间':
+    //             var d = new Date();
+    //             var year = d.getFullYear();
+    //             var month = d.getMonth() + 1;
+    //             var Day = d.getDate();
+    //             var Hours = d.getHours();
+    //             var Minutes = d.getMinutes();
+    //             var Seconds = d.getSeconds();
+
+
+    //             if (month < 10) {
+    //                 month = '0' + month;
+    //             }
+
+    //             if (Day < 10) {
+    //                 Day = '0' + Day;
+    //             }
+
+    //             if (Hours < 10) {
+    //                 Hours = '0' + Hours;
+    //             }
+
+    //             if (Minutes < 10) {
+    //                 Minutes = '0' + Minutes;
+    //             }
+
+    //             if (Seconds < 10) {
+    //                 Seconds = '0' + Seconds;
+    //             }
+
+
+    //             var time = year + '-' + month + '-' + Day + ' ' + Hours + ':' + Minutes + ':' + Seconds;
+    //             alert('当前时间是' + time);
+    //             break;
+
+
+    //         case '3':
+    //         case '笑话':
+    //             var joke = ['笑话1', '笑话2', '笑话3', '笑话4', '笑话5', '笑话6'];
+    //             var r = Math.floor(Math.random() * joke.length);
+    //             alert(joke[r]);
+    //             break;
+
+
+    //         default:
+    //             alert('您的话小飞飞没清楚，请主人再说一遍；');
+    //             break;
+    //     }
+
+    // }
+
+
+    // 封装小娜
+    function XiaoNa() {
+        this.ask = function () {
+            var msg = prompt('请输入数字或者关键字\n输入1或者总和，可以求总和\n输入2或者时间，可以获取当前时间\n输入3或者讲笑话，可以随机弹出一个笑话\n输入q确定退出');
+            return msg;
+        }
+
+        // 计算总和
+        this.totalize = function () {
+            var getsum = prompt('请输入你要求和的数字,以逗号隔开；例如：1,2,3,4');
+            // 把输入的内容，按照逗号分开
+            var arr = getsum.split(',');
+            // 求和
+            var sum = 0;
+            for (var i = 0; i < arr.length; i++) {
+                sum += parseFloat(arr[i]);
+            }
+            alert(sum);
+        }
+
+        // 获取当前时间
+        this.getDate = function () {
+            var date = new Date();
+            // 年
+            var y = date.getFullYear();
+            // 月
+            var M = date.getMonth() + 1;
+            // 日
+            var d = date.getDate();
+            // 时
+            var h = date.getHours();
+            // 分
+            var m = date.getMinutes();
+            // 秒
+            var s = date.getSeconds();
+            M = M < 10 ? '0' + M : M;
+            d = d < 10 ? '0' + d : d;
+            h = h < 10 ? '0' + h : h;
+            m = m < 10 ? '0' + m : m;
+            s = s < 10 ? '0' + s : s;
+            var time = y + '-' + M + '-' + d + '-' + ' ' + h + ':' + m + ':' + s;
+            alert(time);
+        }
+        // 讲笑话
+        this.jokes = function () {
+            var jape = ['笑话1', '笑话9', '笑话5', '笑话7', '恭喜你获得笑话VIP'];
+            var arr = Math.floor(Math.random() * jape.length);
+            alert(jape[arr]);
+        }
+
+
+        // 听不懂
+        this.understand = function () {
+            alert('小娜听不懂你说什么，请重新输入');
+        }
+    }
+
+
+    // 创建一个小娜
+    var xiaona = new XiaoNa();
+    // 循环，按Q退出
+    while (true) {
+        var msg = xiaona.ask();
+        if (msg === 'q') {
+            alert('你确定要退出小娜嘛');
+            break;
+        }
+        switch (msg) {
+            // 总和
+            case '1':
+            case '总和':
+                xiaona.totalize();
+                break;
+
+            // 获取时间
+            case '2':
+            case '获取当前时间':
+                xiaona.getDate();
+                break;
+
+            // 讲笑话
+            case '3':
+            case '讲笑话':
+                xiaona.jokes();
+                break;
+
+            default:
+                xiaona.understand();
+                break;
+        }
+    }
+
+
+
+
+
+</script>
+
+</html>
